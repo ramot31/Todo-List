@@ -1,30 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function TodoItem({ task, deleteTask, toggleComplete, editTask }) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [newText, setNewText] = useState(task.text);
-
-  const handleEdit = () => {
-    if (isEditing) {
-      editTask(task.id, newText);
-    }
-    setIsEditing(!isEditing);
-  };
-
+function TodoItem({ task, toggleComplete, deleteTask, editTask }) {
   return (
-    <li className={`todo-item ${task.completed ? 'completed' : ''}`}>
-      {isEditing ? (
-        <input
-          type="text"
-          value={newText}
-          onChange={(e) => setNewText(e.target.value)}
-        />
-      ) : (
-        <span onClick={() => toggleComplete(task.id)}>{task.text}</span>
-      )}
+    <div className="todo-item">
+      <input
+        type="checkbox"
+        checked={task.completed}
+        onChange={() => toggleComplete(task.id)}
+      />
+      <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+        {task.text}
+      </span>
       <button onClick={() => deleteTask(task.id)}>Delete</button>
-      <button onClick={handleEdit}>{isEditing ? 'Save' : 'Edit'}</button>
-    </li>
+    </div>
   );
 }
 
