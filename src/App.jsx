@@ -39,18 +39,20 @@ function App() {
   const filteredTasks = tasks.filter(task => {
     if (filter === 'active') return !task.completed;
     if (filter === 'completed') return task.completed;
-    return true; // Show all tasks
+    return true;
   });
 
   return (
     <div className="container">
       <h1>To-Do List</h1>
       <TodoForm addTask={addTask} />
+      
       <div className="filters">
         <button onClick={() => setFilter('all')}>All</button>
         <button onClick={() => setFilter('active')}>Active</button>
         <button onClick={() => setFilter('completed')}>Completed</button>
       </div>
+
       <TodoList
         tasks={filteredTasks}
         deleteTask={deleteTask}
