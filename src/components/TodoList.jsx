@@ -1,19 +1,19 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-function TodoList({ tasks, deleteTask, toggleComplete, editTask }) {
+function TodoList({ tasks, toggleComplete, deleteTask, editTask }) {
   return (
-    <ul>
-      {tasks.map((task) => (
+    <div>
+      {tasks.map(task => (
         <TodoItem
           key={task.id}
           task={task}
-          deleteTask={deleteTask}
           toggleComplete={toggleComplete}
+          deleteTask={deleteTask}
           editTask={editTask}
         />
       ))}
-    </ul>
+    </div>
   );
 }
 
